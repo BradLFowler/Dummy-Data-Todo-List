@@ -1,12 +1,12 @@
 let arrayOfTodos = [
     {
-    "userId": 14,
+    "userId": 10,
     "id": 1,
     "title": "delectus aut autem",
     "completed": false
 },
 {
-    "userId": 20,
+    "userId": 5,
     "id": 2,
     "title": "delectus aut autem",
     "completed": false
@@ -35,10 +35,77 @@ const populateTodos = () => {
 
         let todoItem = document.createElement("LI")
 
+        if (arrayOfTodos[i].completed) {
+            todoItem.classList.add("istrue");
+        } else {
+            todoItem.classList.add("isfalse");
+        }
+
         todoItem.appendChild(textNode)
         todoList.appendChild(todoItem)
 
     }
-
    
+}
+
+const clearTodos = () => {
+
+    clearAll = document.getElementById("todo-list")
+    clearAll.innerHTML = ""
+}
+
+const userIn = () => {
+    clearTodos();
+
+    let todoList = document.getElementById("todo-list");
+
+    const userValue = document.getElementById("userid").value;
+
+    const arrayFilter = arrayOfTodos.filter(array => array.userId == userValue);
+
+    for (let i = 0; i < arrayFilter.length; i++) {
+
+        let todoItem = document.createElement("LI");
+
+        todoItem.innerHTML = arrayFilter[i].userId;
+
+        todoList.appendChild(todoItem);
+
+    }
+
+}
+
+const completedTodos = () => {
+    clearTodos();
+
+    let todoList = document.getElementById("todo-list");
+  
+    const arrayFilter = arrayOfTodos.filter(array => array.completed === true);
+  
+    for (let i = 0; i < arrayFilter.length; i++) {
+
+      let todoItem = document.createElement("LI");
+  
+      todoItem.innerHTML = arrayFilter[i].completed;
+      
+      todoList.appendChild(todoItem);
+    }
+
+}
+
+const notCompletedTodos = () => {
+    clearTodos();
+
+    let todoList = document.getElementById("todo-list");
+ 
+    const arrayFilter = arrayOfTodos.filter(array => array.completed === false);
+  
+    for (let i = 0; i < arrayFilter.length; i++) {
+      let todoItem = document.createElement("LI");
+  
+      todoItem.innerHTML = arrayFilter[i].completed;
+      
+      todoList.appendChild(todoItem);
+    }
+
 }
